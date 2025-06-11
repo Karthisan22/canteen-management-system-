@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Items - Add to Cart</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Food Items</h1>
+        <div class="food-items">
+            <div class="food-item">
+                <h2>Pizza</h2>
+                <img src="c.jpg" alt="pizza">
+                <p>Price: $10</p>
+                <button onclick="addToCart('Pizza', 10)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <h2>Burger</h2>
+                <img src="d.jpg" alt="burger">
+                <p>Price: $8</p>
+                <button onclick="addToCart('Burger', 8)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <h2>Pasta</h2>
+                <img src="a.jpg" alt="pasta">
+                <p>Price: $12</p>
+                <button onclick="addToCart('Pasta', 12)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <h2>Salad</h2>
+                <img src="b.jpg" alt="salad">
+                <p>Price: $7</p>
+                <button onclick="addToCart('Salad', 7)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="cart">
+            <h2>Cart</h2>
+            <ul id="cart-items"></ul>
+            <p id="total-cost">Total Cost: $0</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.food-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.food-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    width: calc(50% - 20px);
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.cart {
+    margin-top: 20px;
+}
+
+#cart-items {
+    list-style-type: none;
+    padding: 0;
+}
+</style>
+<script>let cart = [];
+    let totalCost = 0;
+    
+    function addToCart(itemName, itemPrice) {
+        cart.push({ name: itemName, price: itemPrice });
+        totalCost += itemPrice;
+        updateCart();
+    }
+    
+    function updateCart() {
+        const cartItemsList = document.getElementById('cart-items');
+        cartItemsList.innerHTML = '';
+    
+        cart.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = `${item.name} - $${item.price}`;
+            cartItemsList.appendChild(li);
+        });
+    
+        document.getElementById('total-cost').textContent = `Total Cost: $${totalCost}`;
+    }</script>
+</html>
